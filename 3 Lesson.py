@@ -50,8 +50,10 @@
 #     print(a, end =" ")
 #     a = a - 1
 
-'''Task 8'''
-a = [1, 3, 5, 6, 3, 566, 54, 566, 765, 876]
-while a:
-    print(a.pop())
-print(a)
+# '''Task 8'''
+# # a = [1, 3, 5, 6, 3, 566, 54, 566, 765, 876]
+# # while a:
+# #     print(a.pop())
+# # print(a)
+
+
