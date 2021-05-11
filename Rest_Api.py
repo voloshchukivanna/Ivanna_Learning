@@ -6,7 +6,7 @@ r = requests.get(url)
 print(r.status_code)
 
 '''создание книги'''
-book_dict = {'title': "new book",'author': "Nelly"}
+book_dict = {'title': "new book",'author': "Petr"}
 resp = requests.post(url+'books/', data=book_dict)
 req_dict = resp.json()
 book_id=req_dict['id']
