@@ -24,20 +24,20 @@ class TestBookRead(unittest.TestCase):
     def setUp(self):
         self.base_url = "http://pulse-rest-testing.herokuapp.com/"
         self.data = {"title": "unittest", "author": "ivvol"}
-        self.resp = requests.post(self.base_url + "books/", data=self.data)
-        resp_dict = self.resp.json()
+        self.book_post = requests.post(self.base_url + "books/", data=self.data)
+        resp_dict = self.book_post.json()
         self.data['id'] = resp_dict['id']
 
     def test_book_read(self):
         resp = requests.get(self.base_url + "books/" + str(self.data['id']))
         self.assertEqual(resp.status_code, 200)
-        resp_1 = self.resp.json()
-        resp_2 = self.resp.json()
+        resp_1 = self.book_post.json()
+        resp_2 = resp.json()
         self.assertDictEqual(resp_1, resp_2)
 
     def tearDown(self):
         r = requests.delete(self.base_url + "books/" + str(self.data['id']))
-
+        print(r.status_code)
 
 
 class TestBookUpdate(unittest.TestCase):
@@ -57,6 +57,22 @@ class TestBookUpdate(unittest.TestCase):
         r = requests.delete(self.base_url + "books/" + str(self.data['id']))
         print(r.status_code)
 
+
+class TestBookDelete(unittest.TestCase):
+    def setUp(self):
+        self.base_url = "http://pulse-rest-testing.herokuapp.com/"
+        self.data = {"title": "unittest", "author": "ivvol"}
+        self.resp = requests.post(self.base_url + "books/", data=self.data)
+        resp_dict = self.resp.json()
+        self.data['id'] = resp_dict['id']
+
+    def test_book_delete(self):
+        resp_0 = requests.delete(self.base_url + "books/" + str(self.data['id']))
+        self.assertEqual(resp_0.status_code, 204)
+
+    def tearDown(self):
+        r = requests.delete(self.base_url + "books/" + str(self.data['id']))
+        print(r.status_code)
 
 
 
